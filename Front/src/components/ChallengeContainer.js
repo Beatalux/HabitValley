@@ -5,37 +5,38 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import { Link } from 'react-router-dom';
 
 
-export default function ChallengeContainer(props) {
+export default function ChallengeContainer({challenge,showStartDate=true}) {
     return (
         <div style={{ flexShrink: "0", width: "145px", height: "fit-content", borderRadius: "5px", boxShadow: "0 5px 8px 3px #F1F2F6" }}>
             <div style={{ position: "relative" }}>
-                <ChallengeImage src={props.image} />
-                {props.coach &&
+                <ChallengeImage src={challenge.image} />
+                {challenge.coach &&
                     <CoachTag>With Coach</CoachTag>
                 }
             </div>
-            <ChallengeTitleText>{props.title}</ChallengeTitleText>
+            <ChallengeTitleText>{challenge.title}</ChallengeTitleText>
             <FlexContainer>
                 <ChallengeFeatureInfoBox>
-                    {props.type}
+                    {challenge.type}
                 </ChallengeFeatureInfoBox>
                 <ChallengeFeatureInfoBox>
-                    {props.frequency}
+                    {challenge.frequency}
                 </ChallengeFeatureInfoBox>
             </FlexContainer>
 
             <FlexContainer>
                 <PeopleIcon sx={{ fontSize: 15 }} />
                 <div style={{ width: "10px" }} />
-                <SmallText>{props.member}</SmallText>
+                <SmallText>{challenge.member}</SmallText>
             </FlexContainer>
 
-
+            {showStartDate?
             <FlexContainer style={{ marginTop: "-10px" }}>
                 <AccessAlarmIcon sx={{ fontSize: 15 }} />
                 <div style={{ width: "10px" }} />
-                <SmallText>Starts {props.startDate}</SmallText>
-            </FlexContainer>
+                <SmallText>Starts {challenge.startDate}</SmallText>
+            </FlexContainer>:null
+            }
 
         </div>
     )

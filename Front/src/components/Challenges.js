@@ -5,7 +5,8 @@ import readaloud from "../images/readaloud.png";
 import wordsaday from "../images/wordsaday.png";
 
 export const languageChallenges = [
-    {   category:"language",
+    {
+        category: "language",
         id: 0,
         title: "10 words a day",
         image: wordsaday,
@@ -16,7 +17,8 @@ export const languageChallenges = [
         price: "Free",
         coach: true
     },
-    {category:"language",
+    {
+        category: "language",
         id: 1,
         title: "Read Aloud",
         image: readaloud,
@@ -27,7 +29,8 @@ export const languageChallenges = [
         price: "Paid",
         coach: false
     },
-    {category:"language",
+    {
+        category: "language",
         id: 2,
         title: "20 words a day",
         image: wordsaday,
@@ -41,7 +44,8 @@ export const languageChallenges = [
 ]
 
 export const healthnWellnessChallenges = [
-    {   id: 0,
+    {
+        id: 0,
         title: "Jogging",
         image: jogging,
         type: "community",
@@ -51,7 +55,8 @@ export const healthnWellnessChallenges = [
         price: "Free",
         coach: false
     },
-    {   id: 1,
+    {
+        id: 1,
         title: "Go to Gym",
         image: gotogym,
         type: "1:1",

@@ -50,7 +50,7 @@ function LanguageScreen(){
             <ChallengesContainer>
             {
             languageChallenges.map((languageChallenge)=>{
-                return <ChallengeContainer {...languageChallenge}/>} 
+                return <ChallengeContainer key={languageChallenge.id} challenge={languageChallenge}/>} 
             )
             }
             </ChallengesContainer>
@@ -62,7 +62,7 @@ function LanguageScreen(){
 
 export default function LanguageScreenLayout(){
     return(
-        <DefaultLayout Contents={LanguageScreen} ImageContents={mainimage}>
+        <DefaultLayout Contents={LanguageScreen}>
 
 
         </DefaultLayout>

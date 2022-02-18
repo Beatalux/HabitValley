@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import styled from 'styled-components';
 import DefaultLayout from './templates/DefaultLayout.js';
 import ChallengeContainer from './components/ChallengeContainer.js'
-import { languageChallenges, healthnWellnessChallenges } from './components/Challenges';
+import {healthnWellnessChallenges } from './components/Challenges';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import mainimage from "./images/mainimage.jpg";
 
@@ -13,7 +14,7 @@ import PeopleIcon from '@mui/icons-material/People';
 
 
 function MainScreen() {
-
+    
     return (
         <>
             <Wrapper>
@@ -44,7 +45,13 @@ function MainImageLayout(){
 
 
 function ContainerforOneCategory(props) {
+    const [languageChallenges,setLanguageChallenges]=useState([])
 
+    const fetchData=async ()=>{
+        const response=await axios.get("/api/challenge")
+        setLanguageChallenges(response.data)
+    }
+    useEffect(()=>{fetchData()},[])
     let mainCategory = [];
 
     if (props.categoryName == "Language") {
@@ -63,7 +70,7 @@ function ContainerforOneCategory(props) {
             <ChallengeHorizontalScrollContainer>
                 {
                     mainCategory.map((item) => {
-                        return <ChallengeContainer key={item.id} {...item} />
+                        return <ChallengeContainer key={item.id} challenge={item} showStartDate={false} />
                     }
                     )
                 }

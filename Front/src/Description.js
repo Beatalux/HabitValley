@@ -79,8 +79,8 @@ return(
             <HelpIcon color="primary" sx={{ fontSize: 20 }}/>
             <ListText>{description.title}</ListText>
             </FlexContainer>
-            <DetailText>{description.content}</DetailText>
-  
+            
+            <DetailText>{description.content} {description.link?<a href={description.link.address}>{description.link.text}</a>:null}</DetailText>
             </>
         )
 
@@ -100,7 +100,7 @@ font-size:14px;
 padding-left:5px;
 `
 
-const DetailText=styled.p`
+const DetailText=styled.div`
 font-size:12px;
 padding-left:10px;
 margin-top:-3px;

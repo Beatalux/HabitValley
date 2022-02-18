@@ -6,7 +6,9 @@ export default function DefaultLayout({ImageContents,Contents}){
     return(
         <Wrapper>
             <Header></Header>
+            {ImageContents?
             <ImageWrapper><ImageContents/></ImageWrapper>
+            :null}
 
             <ContentsWrapper><Contents/></ContentsWrapper>
 

@@ -10,6 +10,7 @@ export const DescriptionArray=[
     },    
     {
         title: "More Questions?",
-        content:"Check our <a href=\"http://www.example.com\">FAQ</a>"
+        content:"Check our",
+        link:{text:"FAQ",address:"http://www.example.com"}
     },   
 ]

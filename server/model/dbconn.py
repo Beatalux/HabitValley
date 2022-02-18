@@ -4,7 +4,7 @@ import pymysql
 
 class Database():
     def __init__(self):
-        self.db=pymysql.connect(host="localhost",user='root',password="ys3338",db="todo")
+        self.db=pymysql.connect(host="localhost",user='root',password="ys3338",db="habbit_project")
         self.cursor=self.db.cursor(pymysql.cursors.DictCursor)
 
 
