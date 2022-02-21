@@ -1,8 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import DefaultLayout from './templates/DefaultLayout.js';
 import ChallengeContainer from './components/ChallengeContainer.js'
-import {healthnWellnessChallenges } from './components/Challenges';
+import { healthnWellnessChallenges } from './components/Challenges';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ import PeopleIcon from '@mui/icons-material/People';
 
 
 function MainScreen() {
-    
+
     return (
         <>
             <Wrapper>
@@ -31,11 +31,11 @@ function MainScreen() {
 
 }
 
-function MainImageLayout(){
-    return(
-            <MainImageContainer>
-                <SearchBar></SearchBar>
-            </MainImageContainer>
+function MainImageLayout() {
+    return (
+        <MainImageContainer>
+            <SearchBar></SearchBar>
+        </MainImageContainer>
 
 
     )
@@ -45,13 +45,13 @@ function MainImageLayout(){
 
 
 function ContainerforOneCategory(props) {
-    const [languageChallenges,setLanguageChallenges]=useState([])
+    const [languageChallenges, setLanguageChallenges] = useState([])
 
-    const fetchData=async ()=>{
-        const response=await axios.get("/api/challenge")
+    const fetchData = async () => {
+        const response = await axios.get("/api/challenge")
         setLanguageChallenges(response.data)
     }
-    useEffect(()=>{fetchData()},[])
+    useEffect(() => { fetchData() }, [])
     let mainCategory = [];
 
     if (props.categoryName == "Language") {
@@ -62,7 +62,7 @@ function ContainerforOneCategory(props) {
 
     return (
         <div>
-            <div style={{ display: "flex", justifyContent: "space-between",alignItems:"center", marginBottom: "-25px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "-25px" }}>
                 <BigText>{props.categoryName}</BigText>
                 <MoreBtn to={props.categoryName}>More</MoreBtn>
             </div>
@@ -126,8 +126,8 @@ function CategoryOptionsContainer() {
 
 }
 
-export default function MainScreenLayout(){
-    return(
+export default function MainScreenLayout() {
+    return (
         <DefaultLayout Contents={MainScreen} ImageContents={MainImageLayout}>
 
 
