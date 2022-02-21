@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   @media only screen and ${mobile}{
     background-color:white;
     position:center;
-    transform:scale(0.4);
+    //transform:scale(0.4);
   }
 `;
 

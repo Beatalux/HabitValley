@@ -5,12 +5,12 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import { Link } from 'react-router-dom';
 
 
-export default function ChallengeContainer({challenge,showStartDate=true}) {
+export default function ChallengeContainer({ challenge, showStartDate = true }) {
     return (
-        <div style={{ flexShrink: "0", width: "145px", height: "fit-content", borderRadius: "5px", boxShadow: "0 5px 8px 3px #F1F2F6" }}>
+        <div style={{ flexShrink: "0", height: "fit-content", borderRadius: "5px", boxShadow: "0 5px 8px 3px #F1F2F6" }}>
             <div style={{ position: "relative" }}>
                 <ChallengeImage src={challenge.image} />
-                {challenge.coach &&
+                {challenge.coach !== 0 &&
                     <CoachTag>With Coach</CoachTag>
                 }
             </div>
@@ -25,17 +25,17 @@ export default function ChallengeContainer({challenge,showStartDate=true}) {
             </FlexContainer>
 
             <FlexContainer>
-                <PeopleIcon sx={{ fontSize: 15 }} />
-                <div style={{ width: "10px" }} />
+                <PeopleIcon className="people-icon" sx={{ fontSize: 15 }} />
+
                 <SmallText>{challenge.member}</SmallText>
             </FlexContainer>
 
-            {showStartDate?
-            <FlexContainer style={{ marginTop: "-10px" }}>
-                <AccessAlarmIcon sx={{ fontSize: 15 }} />
-                <div style={{ width: "10px" }} />
-                <SmallText>Starts {challenge.startDate}</SmallText>
-            </FlexContainer>:null
+            {showStartDate ?
+                <FlexContainer style={{ marginTop: "-10px" }}>
+                    <AccessAlarmIcon sx={{ fontSize: 15 }} />
+                    <div style={{ width: "10px" }} />
+                    <SmallText>Starts {challenge.startDate}</SmallText>
+                </FlexContainer> : null
             }
 
         </div>
@@ -54,7 +54,7 @@ export function ChallengeDescriptionMainContainer(props) {
                     <CoachTag>With Coach</CoachTag>
                 }
             </div>
-            <FlexContainer style={{justifyContent:"space-between",paddingRight:"20px"}}>
+            <FlexContainer style={{ justifyContent: "space-between", paddingRight: "20px" }}>
                 <DescriptionTitleText>{props.title}</DescriptionTitleText>
                 <StartBtn to={`${props.category}${props.id}apply`}>START</StartBtn>
             </FlexContainer>
@@ -124,6 +124,7 @@ const FlexContainer = styled.div`
 display:flex;
 align-items:center;
 padding-left:5px;
+& > .people-icon{margin-right:10px};
 
 `
 

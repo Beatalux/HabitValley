@@ -5,7 +5,7 @@ import DefaultLayout from '../templates/DefaultLayout.js';
 import {ChallengeDescriptionMainContainer} from '../components/ChallengeContainer.js'
 import {languageChallenges, recommendedChallenges} from '../components/Challenges';
 import {DescriptionArray} from '../components/Description'
-import {ChallengeHorizontalScrollContainer} from './MainScreen'
+import {ChallengeHorizontalScrollContainer} from '../components/ContainerforOneCategory'
 import {Reviews} from '../components/Review'
 import ChallengeContainer from '../components/ChallengeContainer'
 

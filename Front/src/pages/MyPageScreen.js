@@ -201,7 +201,7 @@ const ColoredBar = styled.div`
     width:${props => props.barlength}%;
     border-radius:20px;
     background-color:#2D9CDB;
-    animation:width 3s ease-in-out;
+    transition:width 3s ease-in-out;
 `
 
 

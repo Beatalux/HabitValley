@@ -100,7 +100,7 @@ align-items:center;
 const ChallengesContainer=styled(FlexContainer)`
 display:flex;
 flex-wrap: wrap;
-width:400px;
+
 align-content: space-between;
 margin-left:10px;
 gap:20px;
