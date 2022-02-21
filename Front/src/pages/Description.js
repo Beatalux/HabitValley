@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components';
-import DefaultLayout from './templates/DefaultLayout.js';
+import DefaultLayout from '../templates/DefaultLayout.js';
 
-import {ChallengeDescriptionMainContainer} from './components/ChallengeContainer.js'
-import {languageChallenges, recommendedChallenges} from './components/Challenges';
-import {DescriptionArray} from './components/Description.js'
-import {ChallengeHorizontalScrollContainer} from './MainScreen.js'
-import {Reviews} from './components/Review'
-import ChallengeContainer from './components/ChallengeContainer.js'
+import {ChallengeDescriptionMainContainer} from '../components/ChallengeContainer.js'
+import {languageChallenges, recommendedChallenges} from '../components/Challenges';
+import {DescriptionArray} from '../components/Description'
+import {ChallengeHorizontalScrollContainer} from './MainScreen'
+import {Reviews} from '../components/Review'
+import ChallengeContainer from '../components/ChallengeContainer'
 
 import HelpIcon from '@mui/icons-material/Help';
 import PeopleIcon from '@mui/icons-material/People';

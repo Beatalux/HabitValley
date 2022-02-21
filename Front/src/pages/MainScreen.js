@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
-import DefaultLayout from './templates/DefaultLayout.js';
-import ChallengeContainer from './components/ChallengeContainer.js'
-import { healthnWellnessChallenges } from './components/Challenges';
+import DefaultLayout from '../templates/DefaultLayout.js';
+import ChallengeContainer from '../components/ChallengeContainer.js'
+import { healthnWellnessChallenges } from '../components/Challenges';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import mainimage from "./images/mainimage.jpg";
-
+import mainimage from "../images/mainimage.jpg";
 import SearchIcon from '@mui/icons-material/Search';
-import PeopleIcon from '@mui/icons-material/People';
-
 
 
 function MainScreen() {
@@ -36,8 +33,6 @@ function MainImageLayout() {
         <MainImageContainer>
             <SearchBar></SearchBar>
         </MainImageContainer>
-
-
     )
 
 
@@ -81,12 +76,6 @@ function ContainerforOneCategory(props) {
 
 }
 
-export const ChallengeHorizontalScrollContainer = styled.div`
-display: flex;
-overflow-x: scroll;
-width: 100%;
-gap: 12px;
-`
 
 
 function SearchBar() {
@@ -141,6 +130,12 @@ display:flex;
 align-items:center;
 
 `
+export const ChallengeHorizontalScrollContainer = styled.div`
+display: flex;
+overflow-x: scroll;
+width: 100%;
+gap: 12px;
+`
 
 
 const CategoryBtn = styled.button`
@@ -182,7 +177,6 @@ justify-content:center;
 padding-top:5px;
 `
 
-//Q.why margin doesn't work?
 const Search = styled.div`
 
     background-color:white;

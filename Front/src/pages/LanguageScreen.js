@@ -1,10 +1,9 @@
 import React,{useState} from 'react'
 import styled from 'styled-components';
-import ChallengeContainer from './components/ChallengeContainer.js'
-import DefaultLayout from './templates/DefaultLayout.js';
-import {languageChallenges} from './components/Challenges';
+import ChallengeContainer from '../components/ChallengeContainer.js'
+import DefaultLayout from '../templates/DefaultLayout.js';
+import {languageChallenges} from '../components/Challenges';
 
-import mainimage from "./images/mainimage.jpg";
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';

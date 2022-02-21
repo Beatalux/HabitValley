@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
-import ChallengeContainer from './components/ChallengeContainer.js'
-import { healthnWellnessChallenges } from './components/Challenges';
+import ChallengeContainer from '../components/ChallengeContainer.js'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-import jogging from "./images/jogging.png";
-import readaloud from "./images/readaloud.png";
+import jogging from "../images/jogging.png";
+import readaloud from "../images/readaloud.png";
+
 const dummydata = [{
     id: 0,
     title: "Jogging",

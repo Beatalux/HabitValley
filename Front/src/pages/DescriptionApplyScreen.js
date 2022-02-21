@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
-import DefaultLayout from './templates/DefaultLayout.js';
-import ChallengeContainer from './components/ChallengeContainer.js'
-import { languageChallenges, healthnWellnessChallenges } from './components/Challenges';
+import DefaultLayout from '../templates/DefaultLayout.js';
+import ChallengeContainer from '../components/ChallengeContainer.js'
+import { languageChallenges, healthnWellnessChallenges } from '../components/Challenges';
 import { Link } from 'react-router-dom';
 
 import PeopleIcon from '@mui/icons-material/People';
