@@ -87,18 +87,14 @@ padding-top:5px;
 
 const TitleText = styled.p`
 font-size:30px;
+font-weight:400;
+margin:10px;
+font-family: 'Quicksand', sans-serif;
 
 `
 
 const Wrapper = styled.div`
 padding-bottom:20px;
 `
-const StyledLink = styled(Link)`
-    text-decoration: none;
-
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
-`;
 
 

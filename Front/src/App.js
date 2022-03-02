@@ -8,6 +8,8 @@ import LanguageScreen from './pages/LanguageScreen';
 import MyPageScreen from './pages/MyPageScreen'
 import Description from './pages/Description';
 import DescriptionApplyScreen from './pages/DescriptionApplyScreen'
+import LoginScreen from './pages/LoginScreen'
+import SignupScreen from './pages/SignupScreen'
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
         <Route element={<Description />} path="/description" />
         <Route element={<DescriptionApplyScreen />} path="/language0apply" />
         <Route element={<MyPageScreen />} path="/mypage" />
+        <Route element={<LoginScreen />} path="/login" />
+        <Route element={<SignupScreen />} path="/signup" />
       </Routes>
     </Wrapper>
   );
