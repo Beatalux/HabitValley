@@ -8,28 +8,40 @@ import EmailIcon from '@mui/icons-material/Email';
 import login from '../images/login.jpg'
 
 export default function LoginScreen() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const onSubmit = async () => {
+    const response = await axios.post("/api/account/login", { email, password })
+    console.log(response.data)
+    localStorage.setItem('access_token', response.data.access_token)
+  }
+
+
   return (
     <>
-      <LoginImageContainer/>
+      <LoginImageContainer />
       <TitleText>Login</TitleText>
-      <InputContainer placeholder="login"/>
-      <InputContainer placeholder="password"/>
-      <LoginBtn>Login</LoginBtn>
+      <InputContainer placeholder="E-mail" onChange={(e) => setEmail(e.target.value)}></InputContainer>
+      <InputContainer placeholder="password" onChange={(e) => setPassword(e.target.value)}></InputContainer>
+
+      <LoginBtn onClick={onSubmit}>Login</LoginBtn>
       <GoogleLoginBtn>Connect with Google</GoogleLoginBtn>
       <SmallText>New to Let's build habit?</SmallText>
       <TextBtn to="/signup">Register</TextBtn>
 
     </>
   )
-
 }
+
+
+//빼놓기
 
 function InputContainer(props) {
 
   return (
     <LoginInput>
       <EmailIcon fontSize="medium" />
-      <input class="searchField" type="text" placeholder={props.placeholder}>
+      <input class="searchField" type="text" placeholder={props.placeholder} onChange={props.onChange}>
 
       </input>
     </LoginInput>

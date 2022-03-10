@@ -5,11 +5,6 @@ import ChallengeContainer from '../components/ChallengeContainer';
 import ContainerforOneCategory from '../components/ContainerforOneCategory'
 import SearchBar from '../components/SearchBar'
 import CategoryOptionsContainer from '../components/CategoryOptionsContainer'
-
-import { healthnWellnessChallenges } from '../components/Challenges';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-
 import mainimage from "../images/mainimage.jpg";
 
 

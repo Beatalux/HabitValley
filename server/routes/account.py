@@ -4,6 +4,8 @@ from model.dbconn import database
 import bcrypt
 import jwt
 
+from middlewares.auth import valid_user
+
 bp=Blueprint('account',__name__)
 
 @bp.route("/",methods = ['GET'])
@@ -18,22 +20,29 @@ def get_account():
 def signup():
   try:
     print("request form",request.form)
-    nickname=request.form.get('nickname')
-    email=request.form.get('email')
-    password=request.form.get('password')
+    data=request.get_json()
+    print("data: ",data)
+    nickname=data['nickname']
+    email=data['email']
+    password=data['password']
+    print(nickname,password,email)
     encrypted_password=bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt())
     database.execute("INSERT INTO account(nickname, email, password) values (%s, %s, %s)",(nickname,email,encrypted_password))
     print(nickname,email,password)
     return "SUCCESS"
-  except:
-    print('error')
+  except Exception as e:
+    print('error_log',e)
+    return 'ERROR'
 
 @bp.route("/login",methods = ['POST'])
 def login():
   try:
     print("request form",request.form)
-    email=request.form.get('email')
-    password=request.form.get('password')
+    data=request.get_json()
+
+    email=data['email']
+    password=data['password']
+    print('login:',email,password)
     email_flag=database.executeOne("Select * from account where email=%s",email)
     print("email_flag",email_flag)
     if email_flag==None:
@@ -44,6 +53,16 @@ def login():
     json={"email":email_flag['email'],"nickname":email_flag['nickname']}
     access_token=jwt.encode(json,"secret",algorithm="HS256")
     return jsonify({"access_token":access_token})
+  except Exception as e:
+    print('error_log',e)
+    return 'ERROR'
+
+@bp.route("/userInfo",methods = ['GET'])
+def userInfo():
+  try:
+    response=valid_user(request)
+    return jsonify(response)
+
   except Exception as e:
     print('error_log',e)
     return 'ERROR'

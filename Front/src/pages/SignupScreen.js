@@ -7,21 +7,26 @@ import axios from 'axios';
 import EmailIcon from '@mui/icons-material/Email';
 import login from '../images/login.jpg'
 
-export default function LoginScreen() {
+export default function SignupScreen() {
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const onSubmit = () => {
+    axios.post("/api/account/signup", { email, nickname: name, password })
+  }
+
   return (
     <>
       <LoginImageContainer>
 
       </LoginImageContainer>
       <TitleText>Sign up</TitleText>
-      <InputContainer placeholder="Name" icon={<EmailIcon fontSize="medium" />}></InputContainer>
-      <InputContainer placeholder="login"></InputContainer>
-      <InputContainer placeholder="password"></InputContainer>
-      <LoginBtn>Create Account</LoginBtn>
+      <InputContainer placeholder="Name" icon={<EmailIcon fontSize="medium" />} onChange={(e) => setName(e.target.value)}></InputContainer>
+      <InputContainer placeholder="E-mail" onChange={(e) => setEmail(e.target.value)}></InputContainer>
+      <InputContainer placeholder="password" onChange={(e) => setPassword(e.target.value)}></InputContainer>
+      <LoginBtn onClick={onSubmit}>Create Account</LoginBtn>
       <GoogleLoginBtn>Connect with Google</GoogleLoginBtn>
-      
-
-
 
     </>
 
@@ -30,12 +35,12 @@ export default function LoginScreen() {
 
 }
 
-function InputContainer({icon,placeholder}) {
+function InputContainer({ icon, placeholder, onChange }) {
 
   return (
     <LoginInput>
       {icon}
-      <input class="searchField" type="text" placeholder={placeholder}>
+      <input class="searchField" type="text" placeholder={placeholder} onChange={onChange}>
 
       </input>
     </LoginInput>

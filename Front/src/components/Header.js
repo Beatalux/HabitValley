@@ -1,17 +1,33 @@
-import React from 'react'
+import { alignProperty } from '@mui/material/styles/cssUtils';
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
+import api from '../api'
+
 
 export default function Header() {
+    const [nickname, setNickname] = useState('')
+
+    const access_token = localStorage.getItem('access_token')
+    const getUserInfo = async () => {
+        if (access_token) {
+            const response = await api.getUserInfo()
+            setNickname(response.nickname)
+
+        }
+    }
+    useEffect(() => {
+        getUserInfo()
+
+    }, [])
     return (
 
         <HeaderWrapper>
-
-
-            <div style={{ marginLeft: "auto" }}>
-                <Button>SignUp</Button>
-
-                <Button blueBG>Logout</Button>
-            </div>
+            {nickname ? <p>{nickname}</p> :
+                <div style={{ marginLeft: "auto" }}>
+                    <Button>SignUp</Button>
+                    <Button blueBG>Login</Button>
+                </div>
+            }
         </HeaderWrapper>
 
 
