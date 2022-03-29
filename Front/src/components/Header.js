@@ -22,7 +22,13 @@ export default function Header() {
     return (
 
         <HeaderWrapper>
-            {nickname ? <p>{nickname}</p> :
+            {nickname ? 
+            <div>Hi, {nickname} 
+               <div style={{ marginLeft: "auto" }}>
+                    <Button>SignUp</Button>
+                    <Button blueBG>Login</Button>
+                </div>
+                </div>:
                 <div style={{ marginLeft: "auto" }}>
                     <Button>SignUp</Button>
                     <Button blueBG>Login</Button>
@@ -34,6 +40,10 @@ export default function Header() {
     )
 
 }
+
+const NicknameHeader=styled.div`
+text-align: right;
+`
 const HeaderWrapper = styled.div`
 display:flex;
 padding:8px 3px;

@@ -27,7 +27,7 @@ def signup():
     password=data['password']
     print(nickname,password,email)
     encrypted_password=bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt())
-    database.execute("INSERT INTO account(nickname, email, password) values (%s, %s, %s)",(nickname,email,encrypted_password))
+    database.execute("INSERT INTO habbit_project.account(nickname, email, password) values (%s, %s, %s)",(nickname,email,encrypted_password))
     print(nickname,email,password)
     return "SUCCESS"
   except Exception as e:

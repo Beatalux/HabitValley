@@ -10,6 +10,7 @@ import Description from './pages/Description';
 import DescriptionApplyScreen from './pages/DescriptionApplyScreen'
 import LoginScreen from './pages/LoginScreen'
 import SignupScreen from './pages/SignupScreen'
+import FindingPeerScreen from './pages/FindingPeerScreen'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route element={<MyPageScreen />} path="/mypage" />
         <Route element={<LoginScreen />} path="/login" />
         <Route element={<SignupScreen />} path="/signup" />
+        <Route element={<FindingPeerScreen />} path="/findPeer" />
       </Routes>
     </Wrapper>
   );
