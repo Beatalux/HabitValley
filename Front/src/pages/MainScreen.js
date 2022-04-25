@@ -11,17 +11,17 @@ import mainimage from "../images/mainimage.jpg";
 function MainScreen() {
 
     return (
-        <>
-            <Wrapper>
-                <TitleText>Your Next Habits</TitleText>
-                <CategoryContainer>
-                    <BigText>Category</BigText>
-                    <CategoryOptionsContainer></CategoryOptionsContainer>
-                </CategoryContainer>
-                <ContainerforOneCategory categoryName="Language" />
-                <ContainerforOneCategory categoryName={`Health&Wellness`} />
-            </Wrapper>
-        </>
+
+        <Wrapper>
+            <TitleText>Your Next Habits</TitleText>
+            <CategoryContainer>
+                <BigText>Category</BigText>
+                <CategoryOptionsContainer></CategoryOptionsContainer>
+            </CategoryContainer>
+            <ContainerforOneCategory categoryName="Language" />
+            <ContainerforOneCategory categoryName={`Health&Wellness`} />
+        </Wrapper>
+
     )
 
 }
@@ -48,26 +48,30 @@ export default function MainScreenLayout() {
     )
 }
 
-const FlexContainer = styled.div`
-display:flex;
-align-items:center;
-
-`
-
-
-
 
 
 const CategoryContainer = styled.div`
-height:186px;
+
 margin-top:-15px;
 
-
 `
-const BigText = styled.p`
+const BigText = styled.div`
 font-size:24px;
+font-family: 'Quicksand', sans-serif;
+margin-bottom:20px;
+@media (min-width: 1000px) {
+text-align:center;
+}
 `
-
+const TitleText = styled.div`
+font-size:30px;
+font-weight:400;
+margin-bottom:20px;
+font-family: 'Quicksand', sans-serif;
+@media (min-width: 1000px) {
+text-align:center;
+}
+`
 
 const MainImageContainer = styled.div`
 
@@ -79,17 +83,11 @@ display:flex;
 justify-content:center;
 padding-top:5px;
 `
-
-const TitleText = styled.p`
-font-size:30px;
-font-weight:400;
-margin:10px;
-font-family: 'Quicksand', sans-serif;
-
-`
-
 const Wrapper = styled.div`
 padding-bottom:20px;
+
+
 `
+
 
 

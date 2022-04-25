@@ -10,9 +10,14 @@ def get_challenge():
     args=request.args
     print(args)
     category=args.get("category").replace("zzz",'&')
-  
-    result=database.executeAll("SELECT * FROM challenges ch left join category ca on ch.category=ca.id where ca.name=%s",category)
-    return jsonify(result)
+    print("category",category)
+    try:
+        result=database.executeAll("SELECT * FROM challenges ch left join category ca on ch.category=ca.id where ca.name=%s",category)
+        return jsonify(result)
+    except Exception as e:
+        print('error_log',e)
+        return 'ERROR' 
+    
 
 @bp.route("<id>",methods = ['GET'])
 def get_challenge_with_params(id):

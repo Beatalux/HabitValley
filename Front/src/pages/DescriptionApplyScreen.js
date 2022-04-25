@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import DefaultLayout from '../templates/DefaultLayout.js';
-import { languageChallenges, healthnWellnessChallenges } from '../components/Challenges';
 import { Link } from 'react-router-dom';
-
+import FriendsInvitationModal from '../components/FriendsInvitationModal';
 import PeopleIcon from '@mui/icons-material/People';
 
 export default function DescriptionApplyScreen() {
