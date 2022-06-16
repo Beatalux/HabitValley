@@ -36,6 +36,7 @@ const Wrapper = styled.div`
   display:flex;
   justify-content: center;
   height: 100vh;
+
   @media only screen and ${mobile}{
     background-color:white;
     position:center;

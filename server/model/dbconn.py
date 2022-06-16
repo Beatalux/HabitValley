@@ -1,14 +1,18 @@
 
 import pymysql
 
+from dotenv import load_dotenv
+load_dotenv()
+import os
+
 
 class Database():
     def __init__(self):
         try:
-            self.db=pymysql.connect(host="localhost",user='root',password="ys3338",db="habbit_project")
+            self.db=pymysql.connect(host= os.getenv("HOST"),user=os.getenv("USERNAME"),password=os.getenv("PASSWORD"),db= os.getenv("DATABASE"), ssl_verify_identity=True, ssl={"ca": "/etc/ssl/cert.pem"})
             self.cursor=self.db.cursor(pymysql.cursors.DictCursor)
-        except:
-            print("error")
+        except Exception as e:
+            print("dbconn error",e)
 
 
 

@@ -5,7 +5,7 @@ import ChallengeContainer from '../components/ChallengeContainer';
 import ContainerforOneCategory from '../components/ContainerforOneCategory'
 import SearchBar from '../components/SearchBar'
 import CategoryOptionsContainer from '../components/CategoryOptionsContainer'
-import mainimage from "../images/mainimage.jpg";
+import mainimage from "../images/main.jpg";
 
 
 function MainScreen() {
@@ -76,12 +76,13 @@ text-align:center;
 const MainImageContainer = styled.div`
 
 background-image:url(${mainimage});
-background-size:cover;
+background-size:100% 100%;
+background-repeat: no-repeat;
 width:100%;
-height:176px;
+height:300px;
 display:flex;
 justify-content:center;
-padding-top:5px;
+padding-top:1rem;
 `
 const Wrapper = styled.div`
 padding-bottom:20px;

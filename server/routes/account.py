@@ -54,7 +54,7 @@ def login():
     access_token=jwt.encode(json,"secret",algorithm="HS256")
     return jsonify({"access_token":access_token})
   except Exception as e:
-    print('error_log',e)
+    print('error_log_login',e)
     return 'ERROR'
 
 @bp.route("/userInfo",methods = ['GET'])

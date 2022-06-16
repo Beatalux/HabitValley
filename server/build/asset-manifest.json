@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8a685450.css",
+    "main.js": "/static/js/main.d8785677.js",
+    "static/media/login.jpg": "/static/media/login.44ad09122c2495dd7c95.jpg",
+    "static/media/main.jpg": "/static/media/main.6721763e3bf7ab77a44c.jpg",
+    "static/media/meditation.jpg": "/static/media/meditation.33fd4b5a6b264f379f6f.jpg",
+    "static/media/proofphoto1.jpg": "/static/media/proofphoto1.afd8cfd7c863b88cb375.jpg",
+    "static/media/proofphoto2.jpg": "/static/media/proofphoto2.afd8cfd7c863b88cb375.jpg",
+    "static/media/proofphoto3.jpg": "/static/media/proofphoto3.afd8cfd7c863b88cb375.jpg",
+    "static/media/manprofile.jpg": "/static/media/manprofile.620ae3146eb66a081a18.jpg",
+    "static/media/womanprofile.jpg": "/static/media/womanprofile.990bf8344d8845fea242.jpg",
+    "static/media/readaloud.png": "/static/media/readaloud.36f9ef3250266943c815.png",
+    "static/media/gotogym.png": "/static/media/gotogym.750c2e7987fd6532856a.png",
+    "static/media/jogging.png": "/static/media/jogging.f8949967b3e1110dff41.png",
+    "static/media/wordsaday.png": "/static/media/wordsaday.3d32c46e62549ed2b04c.png",
+    "index.html": "/index.html",
+    "main.8a685450.css.map": "/static/css/main.8a685450.css.map",
+    "main.d8785677.js.map": "/static/js/main.d8785677.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8a685450.css",
+    "static/js/main.d8785677.js"
+  ]
+}
