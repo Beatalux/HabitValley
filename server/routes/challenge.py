@@ -5,25 +5,29 @@ from model.dbconn import database
 bp=Blueprint('challenge',__name__)
 
 
+
+@bp.route("/<id>",methods = ['GET'])
+def get_challenge_with_params(id):
+    print("inparamsssss")
+    result=database.executeOne("SELECT * FROM challenges WHERE id=%s",(id))
+    print("params_id",id,result)
+    return jsonify(result)
+
+
 @bp.route("",methods = ['GET'])
 def get_challenge():
     args=request.args
-    print(args)
-    category=args.get("category").replace("zzz",'&')
-    print("category",category)
+    print("in get chagllenge args:",args)
+    category=args.get("category")
+
     try:
         result=database.executeAll("SELECT * FROM challenges ch left join category ca on ch.category=ca.id where ca.name=%s",category)
+        print("what;s the result",result)
         return jsonify(result)
     except Exception as e:
         print('error_log',e)
         return 'ERROR' 
     
-
-@bp.route("<id>",methods = ['GET'])
-def get_challenge_with_params(id):
-    result=database.executeOne("SELECT * FROM challenges where id=%s",(id))
-    print("id",id)
-    return jsonify(result)
 
 @bp.route("",methods = ['POST'])
 def post_challenge():

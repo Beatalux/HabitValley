@@ -26,6 +26,6 @@ const Search = styled.div`
     .searchField{
         border-radius:20px;
         padding-left:10px;
-        border: 0;
+        border: None;
     }
 `

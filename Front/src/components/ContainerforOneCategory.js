@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import ChallengeContainer from './ChallengeContainer';
 import { Link } from 'react-router-dom';
-import { healthnWellnessChallenges } from '../components/Challenges';
 
 
 
@@ -11,20 +10,40 @@ import { healthnWellnessChallenges } from '../components/Challenges';
 export default function ContainerforOneCategory(props) {
     const [challenges, setChallenges] = useState([])
 
+    const [isLoading, setIsLoading] = useState(true);
+    console.log("this is props", props)
+    const category = props.categoryName
+
     const fetchData = async () => {
-        const category = props.categoryName.replace('&', 'zzz')
-        const response = await axios.get(`/api/challenge?category=${category}`)
-        setChallenges(response.data)
+        try {
+            const response = await axios.get(`/api/challenge?category=${category}`)
+            console.log("response in contaier for one category",response.data);
+            setChallenges(response.data)
+            setIsLoading(false);
+        } catch (error) {
+
+            console.error("Error fetching challenge:", error);
+            setIsLoading(false);
+        }
     }
-    useEffect(() => { fetchData() }, [])
-    
-    return (
-        <div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "-25px" }}>
-                <BigText>{props.categoryName}</BigText>
-                <MoreBtn to={props.categoryName}>More</MoreBtn>
-            </div>
-            <InfoText>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas enim neque tempus, aliquam. Aliquam i.</InfoText>
+
+
+//fetchData()
+useEffect(() => { fetchData() }, [])
+
+return (
+
+    <div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "-10px" }}>
+            <BigText>{category}</BigText>
+
+            <MoreBtn to={`category/${category}`}>More</MoreBtn>
+        </div>
+
+
+        {challenges==null? (
+            <p>Loading...</p>
+        ) :(
             <ChallengeHorizontalScrollContainer>
                 {
                     challenges.map((item) => {
@@ -33,9 +52,10 @@ export default function ContainerforOneCategory(props) {
                     )
                 }
             </ChallengeHorizontalScrollContainer>
-        </div>
+        )}
+    </div>
 
-    )
+)
 
 }
 export const ChallengeHorizontalScrollContainer = styled.div`
@@ -56,10 +76,12 @@ const StyledLink = styled(Link)`
 `;
 
 const MoreBtn = styled(StyledLink)`
-color:#208AEC;
-font-size:12px;
+color:#0466c8;
+font-size:13px;
 background-color: transparent;
 border:none;
+font-weight:500;
+font-family: 'Quicksand', sans-serif;
 `
 const InfoText = styled.p`
 font-size:12px;

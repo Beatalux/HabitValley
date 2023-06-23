@@ -7,7 +7,7 @@ import axios from 'axios';
 import EmailIcon from '@mui/icons-material/Email';
 import login from '../images/login.jpg'
 
-export default function LoginScreen() {
+export  function LoginScreen() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const onSubmit = async () => {
@@ -25,13 +25,23 @@ export default function LoginScreen() {
       <InputContainer placeholder="password" onChange={(e) => setPassword(e.target.value)}></InputContainer>
 
       <LoginBtn onClick={onSubmit}>Login</LoginBtn>
-      <GoogleLoginBtn>Connect with Google</GoogleLoginBtn>
-      <SmallText>New to Let's build habit?</SmallText>
-      <TextBtn to="/signup">Register</TextBtn>
 
     </>
   )
 }
+
+
+export default function MainScreenLayout() {
+
+
+  return (
+      <DefaultLayout Contents={LoginScreen} >
+
+      </DefaultLayout>
+
+  )
+}
+
 
 
 //빼놓기
@@ -51,10 +61,14 @@ function InputContainer(props) {
 
 
 const SmallText = styled.p`
-font-size:12px;
-font-weight:400;
-margin:10px;
+font-size:20px;
+font-weight:600;
+width:60%;
+margin:30px 20% 0px 20%;
+
+
 font-family: 'Quicksand', sans-serif;
+margin-left:15%;
 `
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -124,5 +138,5 @@ font-size:30px;
 font-weight:700;
 font-family: 'Quicksand', sans-serif;
 margin-left:15%;
-
+margin-top:0;
 `

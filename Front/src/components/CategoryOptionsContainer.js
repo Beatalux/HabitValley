@@ -1,24 +1,45 @@
 import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Category } from '@mui/icons-material';
+
+
 
 
 export default function CategoryOptionsContainer() {
+
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  const fetchData = async () => {
+    try{
+      const response = await axios.get(`/api/category`)
+      console.log("categories response:",response.data);
+
+      setCategories(response.data);
+      setIsLoading(false);
+  }catch(error){
+    console.error("Error fetching categoe:", error);
+    setIsLoading(false);
+
+
+  }
+}
+
+  //fetchData()
+  useEffect(() => { fetchData() }, [])
+
+
+
   return (
     <Wrapper>
-      <FlexContainer>
-        <CategoryBtn>Health&amp;Wellness</CategoryBtn>
-        <CategoryBtn>Programming</CategoryBtn>
-        <CategoryBtn>Marketing</CategoryBtn>
-      </FlexContainer>
-      <FlexContainer style={{ marginLeft: "-10px" }}>
-        <CategoryBtn>Start Your Own Business</CategoryBtn>
-        <CategoryBtn>Language</CategoryBtn>
-        <CategoryBtn>Design</CategoryBtn>
-      </FlexContainer>
-      <FlexContainer>
-        <CategoryBtn>Stock Market</CategoryBtn>
-        <CategoryBtn>Career Change</CategoryBtn>
-        <CategoryBtn>Customize</CategoryBtn>
-      </FlexContainer>
+      {categories.map((item)=> {
+            return <CategoryBtn key={item.id}>{item.name}</CategoryBtn>
+      })}
+
+    
 
     </Wrapper>
   )

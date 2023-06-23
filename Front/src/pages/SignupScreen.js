@@ -7,7 +7,7 @@ import axios from 'axios';
 import EmailIcon from '@mui/icons-material/Email';
 import login from '../images/login.jpg'
 
-export default function SignupScreen() {
+export function SignupScreen() {
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -26,7 +26,6 @@ export default function SignupScreen() {
       <InputContainer placeholder="E-mail" onChange={(e) => setEmail(e.target.value)}></InputContainer>
       <InputContainer placeholder="password" onChange={(e) => setPassword(e.target.value)}></InputContainer>
       <LoginBtn onClick={onSubmit}>Create Account</LoginBtn>
-      <GoogleLoginBtn>Connect with Google</GoogleLoginBtn>
 
     </>
 
@@ -46,6 +45,19 @@ function InputContainer({ icon, placeholder, onChange }) {
     </LoginInput>
   )
 
+}
+
+
+
+export default function MainScreenLayout() {
+
+
+  return (
+      <DefaultLayout Contents={SignupScreen} >
+
+      </DefaultLayout>
+
+  )
 }
 
 const GoogleLoginBtn = styled.button`
@@ -122,5 +134,6 @@ font-size:30px;
 font-weight:700;
 font-family: 'Quicksand', sans-serif;
 margin-left:15%;
+margin-top:0;
 
 `

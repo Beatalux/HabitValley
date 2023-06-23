@@ -6,83 +6,68 @@ import { Link } from 'react-router-dom';
 
 
 export default function ChallengeContainer({ challenge, showStartDate = true }) {
+    console.log("challenge container ", challenge)
     return (
-        <div style={{ flexShrink: "0", height: "fit-content", borderRadius: "5px", boxShadow: "0 5px 8px 3px #F1F2F6" }}>
-            <div style={{ position: "relative" }}>
-                <ChallengeImage src={challenge.image} />
-                {challenge.coach !== 0 &&
-                    <CoachTag>With Coach</CoachTag>
+
+        <StyledLink to={`../challenge/${challenge.id}`} >
+            <div style={{ flexShrink: "0", height: "fit-content", borderRadius: "5px", boxShadow: "2px 5px 8px 3px #F1F2F6" }}>
+                <div style={{ position: "relative" }}>
+                    <ChallengeImage src={challenge.image} />
+                    {challenge.coach !== 0 &&
+                        <CoachTag>With Coach</CoachTag>
+                    }
+                </div>
+                <ChallengeTitleText>{challenge.title}</ChallengeTitleText>
+                <FlexContainer>
+                    {challenge.price !== 0 &&
+                        <ChallengeFeatureInfoBox>
+                            deposit
+                        </ChallengeFeatureInfoBox>
+                    }
+                    {challenge.community !== 0 &&
+                        <ChallengeFeatureInfoBox>
+                            community
+                        </ChallengeFeatureInfoBox>
+                    }
+                </FlexContainer>
+
+                <FlexContainer>
+                    <PeopleIcon className="people-icon" sx={{ fontSize: 15 }} />
+
+                    <SmallText>{challenge.member}</SmallText>
+                </FlexContainer>
+
+                {showStartDate ?
+                    <FlexContainer style={{ marginTop: "-10px" }}>
+                        <AccessAlarmIcon sx={{ fontSize: 15 }} />
+                        <div style={{ width: "10px" }} />
+
+                        <FormattedDate date={challenge.startDate}></FormattedDate>
+
+                    </FlexContainer> : null
                 }
+
             </div>
-            <ChallengeTitleText>{challenge.title}</ChallengeTitleText>
-            <FlexContainer>
-                <ChallengeFeatureInfoBox>
-                    {challenge.type}
-                </ChallengeFeatureInfoBox>
-                <ChallengeFeatureInfoBox>
-                    {challenge.frequency}
-                </ChallengeFeatureInfoBox>
-            </FlexContainer>
-
-            <FlexContainer>
-                <PeopleIcon className="people-icon" sx={{ fontSize: 15 }} />
-
-                <SmallText>{challenge.member}</SmallText>
-            </FlexContainer>
-
-            {showStartDate ?
-                <FlexContainer style={{ marginTop: "-10px" }}>
-                    <AccessAlarmIcon sx={{ fontSize: 15 }} />
-                    <div style={{ width: "10px" }} />
-                    <SmallText>Starts {challenge.startDate}</SmallText>
-                </FlexContainer> : null
-            }
-
-        </div>
+        </StyledLink>
     )
 }
 
-export function ChallengeDescriptionMainContainer(props) {
 
-    return (
+const FormattedDate = (props) => {
+    console.log("props.date", props.date)
+    let num = props.date.indexOf("2023")
+    const formatted = props.date.slice(4, num)
+    return <SmallText>Start day: {formatted}</SmallText>;
+};
 
-        <div>
-
-            <div style={{ position: "relative" }}>
-                <DescriptionImage src={props.image} />
-                {props.coach &&
-                    <CoachTag>With Coach</CoachTag>
-                }
-            </div>
-            <FlexContainer style={{ justifyContent: "space-between", paddingRight: "20px" }}>
-                <DescriptionTitleText>{props.title}</DescriptionTitleText>
-                <StartBtn to={`${props.category}${props.id}apply`}>START</StartBtn>
-            </FlexContainer>
-            <FlexContainer>
-                <ChallengeFeatureInfoBox>
-                    {props.type}
-                </ChallengeFeatureInfoBox>
-                <ChallengeFeatureInfoBox>
-                    {props.frequency}
-                </ChallengeFeatureInfoBox>
-            </FlexContainer>
-            <FlexContainer>
-                <PeopleIcon sx={{ fontSize: 15 }} />
-                <div style={{ width: "10px" }} />
-                <SmallText>{props.member} joined</SmallText>
-            </FlexContainer>
-            <FlexContainer style={{ marginTop: "-10px" }}>
-                <AccessAlarmIcon sx={{ fontSize: 15 }} />
-                <div style={{ width: "10px" }} />
-                <SmallText>Starts {props.startDate}</SmallText>
-            </FlexContainer>
-
-        </div>
-
-
-
-    )
-}
+const StyledLink = styled(Link)`
+    color:#1d3461;
+    text-decoration: none;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    color:#1d3461;
+    }
+`;
 
 
 const ChallengeTitleText = styled.p`
@@ -100,27 +85,24 @@ margin:10px;
 const ChallengeFeatureInfoBox = styled.div`
 width:fit-content;
 padding:5px 10px;
-margin:-7px 10px -3px 0;
+margin:-10px 10px -3px 0;
 border-radius:15px;
 font-size:10px;
 font-weight:600;
-background-color:lightgrey;
+background-color:#bbdefb;
 `
 
 const ChallengeImage = styled.img`
-width:145px;
+width:150px;
 height:107px;
 margin-bottom:-10px;
 
 `
 
 
-const DescriptionImage = styled(ChallengeImage)`
-width:100%;
-height:150px;
 
-`
 const FlexContainer = styled.div`
+height:20px;
 display:flex;
 align-items:center;
 padding-left:5px;
@@ -146,21 +128,6 @@ font-weight:300;
 background-color:white;
 `
 
-const StyledLink = styled(Link)`
-    text-decoration: none;
 
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
-`;
 
-const StartBtn = styled(StyledLink)`
-    
-border-radius:10px;
-background:#208AEC;
-color:white;
-border:none;
-padding:5px 15px;
-font-size:12px;
-`
 

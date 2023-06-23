@@ -5,10 +5,10 @@ import ChallengeContainer from '../components/ChallengeContainer';
 import ContainerforOneCategory from '../components/ContainerforOneCategory'
 import SearchBar from '../components/SearchBar'
 import CategoryOptionsContainer from '../components/CategoryOptionsContainer'
-import mainimage from "../images/main.jpg";
-
+import mainimage from "../images/mainimg2.jpg";
 
 function MainScreen() {
+
 
     return (
 
@@ -18,8 +18,7 @@ function MainScreen() {
                 <BigText>Category</BigText>
                 <CategoryOptionsContainer></CategoryOptionsContainer>
             </CategoryContainer>
-            <ContainerforOneCategory categoryName="Language" />
-            <ContainerforOneCategory categoryName={`Health&Wellness`} />
+            <ContainerforOneCategory categoryName="Well-being"/>
         </Wrapper>
 
     )

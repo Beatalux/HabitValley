@@ -1,7 +1,11 @@
 import { alignProperty } from '@mui/material/styles/cssUtils';
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
-import api from '../api'
+import api from '../api';
+
+import logo from '../images/logo.png';
+import { Link } from 'react-router-dom';
+
 
 
 export default function Header() {
@@ -22,6 +26,8 @@ export default function Header() {
     return (
 
         <HeaderWrapper>
+            <LogoContainer to='/'></LogoContainer>
+
             {nickname ? 
             <div>Hi, {nickname} 
                <div style={{ marginLeft: "auto" }}>
@@ -30,8 +36,8 @@ export default function Header() {
                 </div>
                 </div>:
                 <div style={{ marginLeft: "auto" }}>
-                    <Button>SignUp</Button>
-                    <Button blueBG>Login</Button>
+                    <Button to='/signup'>SignUp</Button>
+                    <Button blueBG to='/login'>Login</Button>
                 </div>
             }
         </HeaderWrapper>
@@ -41,23 +47,44 @@ export default function Header() {
 
 }
 
-const NicknameHeader=styled.div`
-text-align: right;
+
+const StyledLink =styled(Link)`
+
+    text-decoration: none;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+
+    }
+`;
+
+const LogoContainer = styled(StyledLink)`
+background-image:url(${logo});
+background-size:contain;
+background-repeat:no-repeat;
+width:30%;
+height:50px;
+border-radius: 20px;
 `
+
 const HeaderWrapper = styled.div`
 display:flex;
-padding:8px 3px;
+align-items: center;
+padding:8px 1em;
+max-width: 600px;
 
 `
-const Button = styled.button`
+const Button =  styled(StyledLink)`
 
-background:${props => props.blueBG ? 'transparent' : '#208AEC'};
+background:${props => props.blueBG ? 'transparent' : '#0466c8'};
 color:${props => props.blueBG ? 'black' : 'white'};
 border:1px solid #208AEC;
 
-font-size:1em;
+font-size:0.8em;
 border-radius:10px;
-padding:0.25em,0.5em;
+padding:3px 10px;
 margin-left:10px;
+
+
+font-family: 'Quicksand', sans-serif;
 
 `;
