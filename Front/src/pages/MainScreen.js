@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components';
 import DefaultLayout from '../templates/DefaultLayout.js';
 import ChallengeContainer from '../components/ChallengeContainer';
-import ContainerforOneCategory from '../components/ContainerforOneCategory'
-import SearchBar from '../components/SearchBar'
+import ContainerforOneCategory from '../components/XContainerforOneCategory.js'
+import LiveSearchFilter from '../components/SearchBar'
 import CategoryOptionsContainer from '../components/CategoryOptionsContainer'
-import mainimage from "../images/main.jpg";
-
+import mainimage from "../images/mainimg2.jpg";
 
 function MainScreen() {
+
+    
+  console.log("welcome to MainScreen")
 
     return (
 
         <Wrapper>
-            <TitleText>Your Next Habits</TitleText>
+
             <CategoryContainer>
                 <BigText>Category</BigText>
-                <CategoryOptionsContainer></CategoryOptionsContainer>
+                <CategoryOptionsContainer/>
             </CategoryContainer>
-            <ContainerforOneCategory categoryName="Language" />
-            <ContainerforOneCategory categoryName={`Health&Wellness`} />
+            <ContainerforOneCategory categoryName="Well-being"/>
+            <ContainerforOneCategory categoryName="Language"/>
         </Wrapper>
 
     )
@@ -28,9 +30,11 @@ function MainScreen() {
 
 function MainImageLayout() {
     return (
-        <MainImageContainer>
-            <SearchBar></SearchBar>
-        </MainImageContainer>
+        <div style={{position:"relative", contain:"content"}}>
+            <LiveSearchFilter/>
+            <MainImageContainer/>
+        </div>
+
     )
 
 
@@ -51,21 +55,20 @@ export default function MainScreenLayout() {
 
 
 const CategoryContainer = styled.div`
-
-margin-top:-15px;
-
+margin-top:15px;
 `
 const BigText = styled.div`
-font-size:24px;
+font-size:28px;
 font-family: 'Quicksand', sans-serif;
 margin-bottom:20px;
+font-weight:700;
 @media (min-width: 1000px) {
 text-align:center;
 }
 `
 const TitleText = styled.div`
 font-size:30px;
-font-weight:400;
+font-weight:900;
 margin-bottom:20px;
 font-family: 'Quicksand', sans-serif;
 @media (min-width: 1000px) {
@@ -83,6 +86,7 @@ height:300px;
 display:flex;
 justify-content:center;
 padding-top:1rem;
+margin-top:4rem;
 `
 const Wrapper = styled.div`
 padding-bottom:20px;

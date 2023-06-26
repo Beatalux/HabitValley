@@ -6,9 +6,9 @@ export default function DefaultLayout({ImageContents,Contents}){
     return(
         <Wrapper>
             <Header></Header>
-            {ImageContents?
+            {ImageContents&&
             <ImageWrapper><ImageContents/></ImageWrapper>
-            :null}
+            }
 
             <ContentsWrapper><Contents/></ContentsWrapper>
 
@@ -23,9 +23,9 @@ const ImageWrapper=styled.div`
 `
 
 const Wrapper=styled.div`
-width:100%;
+width:95%;
 @media (min-width:750px){
-    width:65%;
+    width:600px;
 }
 
 `
@@ -33,6 +33,8 @@ width:100%;
 const ContentsWrapper=styled.div`
 
 margin:0px 15px;
+padding-bottom:10px;
+max-width:600px;
 
 
 `

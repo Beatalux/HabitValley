@@ -1,20 +1,77 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import DefaultLayout from '../templates/DefaultLayout.js';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import EmailIcon from '@mui/icons-material/Email';
-import login from '../images/login.jpg'
+import signup from '../images/signup.png'
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import CircularProgress from '@mui/material/CircularProgress';
+import { DialogContent } from '@mui/material';
 
-export default function LoginScreen() {
+
+export function LoginScreen() {
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const onSubmit = async () => {
-    const response = await axios.post("/api/account/login", { email, password })
-    console.log(response.data)
-    localStorage.setItem('access_token', response.data.access_token)
+  const [clicked, isClicked] = useState(false)
+
+  const [redirectNow, setRedirectNow] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate()
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const DialogTest = () => {
+    return (
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Your account is Created!"}
+        </DialogTitle>
+
+
+      </Dialog>
+    )
   }
+
+
+  const onSubmit = async () => {
+
+    console.log("in on submit")
+    isClicked(true)
+    if (email && password) {
+      try {
+
+        const response = await axios.post("/api/account/login", { email, password })
+        console.log(response.data)
+        localStorage.setItem('access_token', response.data.access_token)
+        DialogTest();
+        handleClickOpen();
+        setTimeout(() => {
+          handleClickOpen();
+          navigate('/')
+        }, 1000);
+      } catch (error) {
+        return (
+          <h1>ERROR</h1>
+        )
+      }
+    }
+  }
+
 
 
   return (
@@ -22,39 +79,65 @@ export default function LoginScreen() {
       <LoginImageContainer />
       <TitleText>Login</TitleText>
       <InputContainer placeholder="E-mail" onChange={(e) => setEmail(e.target.value)}></InputContainer>
+      {!email && clicked && <SmallText>Email should be filled</SmallText>}
       <InputContainer placeholder="password" onChange={(e) => setPassword(e.target.value)}></InputContainer>
+      {!password && clicked && <SmallText>Password should be filled</SmallText>}
+      <div style={{ height: "20px" }}></div>
+      <LoginBtn
+        onClick={onSubmit}
+        disabled={!email || !password}>Create Account</LoginBtn>
+      {open && (
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title">
+            {"Logging you in..."}
+          </DialogTitle>
 
-      <LoginBtn onClick={onSubmit}>Login</LoginBtn>
-      <GoogleLoginBtn>Connect with Google</GoogleLoginBtn>
-      <SmallText>New to Let's build habit?</SmallText>
-      <TextBtn to="/signup">Register</TextBtn>
-
+          <DialogContent>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <CircularProgress></CircularProgress>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   )
 }
-
-
-//빼놓기
 
 function InputContainer(props) {
 
   return (
     <LoginInput>
-      <EmailIcon fontSize="medium" />
-      <input class="searchField" type="text" placeholder={props.placeholder} onChange={props.onChange}>
+      <input class="searchField" type="text" placeholder={props.placeholder} onChange={props.onChange} />
 
-      </input>
     </LoginInput>
   )
 
 }
 
+export default function MainScreenLayout() {
+
+  return (
+    <DefaultLayout Contents={LoginScreen} />
+
+
+  )
+}
+
+
 
 const SmallText = styled.p`
-font-size:12px;
-font-weight:400;
-margin:10px;
+font-size:20px;
+font-weight:600;
+width:60%;
+margin:30px 20% 0px 20%;
+
+
 font-family: 'Quicksand', sans-serif;
+margin-left:15%;
 `
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -109,10 +192,11 @@ const LoginInput = styled.div`
         border-radius:20px;
         padding-left:10px;
         border: 0;
+        outline:none;
     }
 `
 const LoginImageContainer = styled.div`
-background-image:url(${login});
+background-image:url(${signup});
 background-size:contain;
 background-repeat:no-repeat;
 width:80%;
@@ -122,7 +206,6 @@ padding-top:5px;
 const TitleText = styled.p`
 font-size:30px;
 font-weight:700;
-font-family: 'Quicksand', sans-serif;
 margin-left:15%;
-
+margin-top:0;
 `

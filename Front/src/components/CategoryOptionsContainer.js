@@ -1,52 +1,98 @@
 import styled from 'styled-components';
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Category } from '@mui/icons-material';
 
 
 export default function CategoryOptionsContainer() {
-  return (
-    <Wrapper>
-      <FlexContainer>
-        <CategoryBtn>Health&amp;Wellness</CategoryBtn>
-        <CategoryBtn>Programming</CategoryBtn>
-        <CategoryBtn>Marketing</CategoryBtn>
-      </FlexContainer>
-      <FlexContainer style={{ marginLeft: "-10px" }}>
-        <CategoryBtn>Start Your Own Business</CategoryBtn>
-        <CategoryBtn>Language</CategoryBtn>
-        <CategoryBtn>Design</CategoryBtn>
-      </FlexContainer>
-      <FlexContainer>
-        <CategoryBtn>Stock Market</CategoryBtn>
-        <CategoryBtn>Career Change</CategoryBtn>
-        <CategoryBtn>Customize</CategoryBtn>
-      </FlexContainer>
+  console.log("welcome to  Category options container")
 
-    </Wrapper>
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+
+
+
+  console.log("before useEffect", categories);
+  //fetchData()
+  useEffect(() => {
+
+    const abortController = new AbortController();
+
+    const fetchData = async () => {
+      console.log("inside category options fetch data")
+
+      try {
+        console.log("now in try")
+        const response = await axios.get(`/api/category`, {
+          signal: abortController.signal,
+        });
+        setCategories(response.data)
+        console.log("in container for category options, response.data", response.data);
+        setIsLoading(false);
+      } catch (error) {
+
+        console.log('Data not found.');
+        console.error("Error fetching challenge:", error);
+        setIsLoading(false);
+
+      }
+    }
+    fetchData();
+
+    return () => abortController.abort();
+  }, [])
+
+  return (
+    <CategoryContainer>
+      {categories == null ? (
+        <p>Loading...</p>
+      ) : (
+
+        categories.map((category) => {
+          return <CategoryBtn to={`category/${category.name}`} key={category.id}>{category.name}</CategoryBtn>
+        }))
+      }
+
+    </CategoryContainer>
   )
 
 }
 
-const FlexContainer = styled.div`
+const CategoryContainer = styled.div`
+
 display:flex;
-align-items:center;
-@media (min-width: 1000px) {
+flex-wrap: wrap;
+
+
+@media (min-width:950px) {
 justify-content: center;
 }
 `
-const Wrapper = styled.div`
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
 
-`
-const CategoryBtn = styled.button`
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
+const CategoryBtn = styled(StyledLink)`
+
 margin-right:15px;
-margin-bottom:10px;
+margin-bottom: 10px;
 background-color: transparent;
 color:#208AEC;
 border:1px solid #208AEC;
-font-size:13px;
+font-size:15px;
 border-radius:16px;
 padding:8px 8px;
+font-weight:600;
 
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
 font-size:20px;
 }
 
