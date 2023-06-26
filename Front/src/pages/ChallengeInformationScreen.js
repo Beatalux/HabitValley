@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from 'styled-components';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import axios from 'axios';
 import DefaultLayout from '../templates/DefaultLayout.js';
 import HelpIcon from '@mui/icons-material/Help';
 import PeopleIcon from '@mui/icons-material/People';
-
+import GradeIcon from '@mui/icons-material/Grade';
 
 
 export function ChallengeInformationScreen() {
@@ -50,7 +50,7 @@ export function ChallengeInformationScreen() {
                 <ChallengeDescriptionMainContainer {...challenge} />
             )}
 
-            <h2>Review</h2>
+            <ReviewTitleText>Review</ReviewTitleText>
             <ReviewContainer></ReviewContainer>
 
         </div>
@@ -65,21 +65,24 @@ export default function MainScreenLayout() {
 
     return (
         <DefaultLayout Contents={ChallengeInformationScreen} >
-
         </DefaultLayout>
 
     )
 }
 
 function ReviewContainer(props) {
+    const n = 5
     return (
         <>
             {Reviews.map((review) => {
                 return (
                     <>
-                        <FlexContainer>
-                            < PeopleIcon sx={{ fontSize: 20 }} />
-                            <ListText> {review.name}?</ListText>
+                        <FlexContainer style={{ justifyContent: "space-between" }}>
+                            <ListText style={{ color: "#208AEC" }}> {review.name}</ListText>
+                            <FlexContainer>
+                                {[...Array(n)].map((e, i) => {
+                                    return (<GradeIcon color='primary' sx={{ fontSize: 20 }}> </GradeIcon>)
+                                })}</FlexContainer>
                         </FlexContainer>
                         <DetailText>{review.content}</DetailText>
                     </>
@@ -90,6 +93,7 @@ function ReviewContainer(props) {
     )
 
 }
+
 
 
 function ChallengeDescriptionMainContainer(props) {
@@ -107,7 +111,6 @@ function ChallengeDescriptionMainContainer(props) {
             <FlexContainer style={{ justifyContent: "space-between", marginTop: "-15px", padding: "0px 10px" }}>
                 <DescriptionTitleText>{props.title}</DescriptionTitleText>
                 <SignupDialog></SignupDialog>
-
             </FlexContainer>
             <FlexContainer>
 
@@ -138,8 +141,8 @@ function ChallengeDescriptionMainContainer(props) {
             <>
                 <DescriptionQuestionContaier num={0} />
                 <DetailText>{description[0].contentB} {props.title}! {description[0].contentA} </DetailText>
-                <DescriptionQuestionContaier num={1}/>
-                <DetailText>{description[1].content[props.category-1]}</DetailText>
+                <DescriptionQuestionContaier num={1} />
+                <DetailText>{description[1].content[props.category - 1]}</DetailText>
                 <DescriptionQuestionContaier num={2} />
                 <DetailText>{description[2].content} <a href={description[2].link.address}>{description[2].link.text}</a> </DetailText>
             </>
@@ -185,15 +188,12 @@ font-size:14px;
 padding-left:5px;
 font-weight: 600;
 
-font-family: 'Quicksand', sans-serif;
 `
 
 const DetailText = styled.div`
 font-size:12px;
 padding-left:10px;
 margin-top:-3px;
-
-font-family: 'Quicksand', sans-serif;
 
 `
 
@@ -204,11 +204,16 @@ height:150px;
 const DescriptionTitleText = styled.p`
 font-size:24px;
 font-weight:800;
-font-family: 'Quicksand', sans-serif;
+`
+
+const ReviewTitleText = styled.p`
+font-size:24px;
+font-weight:800;
+margin-bottom:5px;
 
 `
 const StartBtn = styled.button`
-    color:white;
+color:white;
 border-radius:15px;
 background: #0466c8;
 border:none;
@@ -233,7 +238,6 @@ const SmallText = styled.p`
 font-size:10px;
 font-weight:600;
 
-font-family: 'Quicksand', sans-serif;
 
 `
 
@@ -253,7 +257,6 @@ font-size:12px;
 font-weight:600;
 background-color:#bbdefb;
 
-font-family: 'Quicksand', sans-serif;
 `
 
 const ChallengeImage = styled.img`

@@ -25,7 +25,7 @@ const ImageWrapper=styled.div`
 const Wrapper=styled.div`
 width:95%;
 @media (min-width:750px){
-    width:65%;
+    width:600px;
 }
 
 `
@@ -33,6 +33,7 @@ width:95%;
 const ContentsWrapper=styled.div`
 
 margin:0px 15px;
+padding-bottom:10px;
 max-width:600px;
 
 

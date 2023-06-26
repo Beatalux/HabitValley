@@ -26,7 +26,7 @@ function LanguageScreen() {
 
 
     const fetchData = async () => {
-        const response = await axios.get(`/api/challenge?category=${category}`)
+        const response = await axios.get(`/api/category/${category}`)
         setChallenges(response.data)
     }
 
@@ -65,18 +65,9 @@ function LanguageScreen() {
 
     return (
         <div>
-            <CategoryTitleContainer>
-                <FlexContainer>
-                    <ArrowBackIosIcon />
-                    <BigText>{category}</BigText>
-                </FlexContainer>
-                <HelpIcon color="primary" />
-            </CategoryTitleContainer>
-
-            {console.log(filteredBtn)}
-
-
-            <FilterBtn onClick={() => setIsFilteredShown(!isFilteredShown)} isFiltered={filteredBtn} >
+    
+            <BigText>{category}</BigText>
+            <FilterBtn onClick={() => setIsFilteredShown(!isFilteredShown)} isFiltered={isFilteredShown} >
                 {filteredBtn ? <FilterAltIcon sx={{ fontSize: 15 }} color="primary" /> :
                     <FilterAltIcon sx={{ fontSize: 15 }} />}
 
@@ -84,13 +75,11 @@ function LanguageScreen() {
             </FilterBtn>
             {(isFilteredShown) &&
                 <FilterContainer>
-                    <div>
                         <input type="checkbox" value="free" name="member" 
-              onChange={handleFilterChange} />Free Challenge
+              onChange={handleFilterChange} />Free Challenge   
+              <div style={{width:"10px"}}></div>
                         <input type="checkbox" value="coach" name="member" 
               onChange={handleFilterChange}/>Coach
-
-                    </div>
                 </FilterContainer>
             }
 
@@ -116,20 +105,10 @@ export default function LanguageScreenLayout() {
 
     )
 }
-const ApplyFilterBtn = styled.button`
-border:1px solid #208AEC;
 
-border-radius:3px;
-padding:3px 10px;
-color:white;
-background:#208AEC;
-
-`
 
 const FilterContainer = styled.div`
 display:flex;
-justify-content:space-between;
-
 align-items:center;
 margin-left:10px;
 margin-right:18px;
@@ -140,7 +119,9 @@ font-size:14px;
 `
 
 const BigText = styled.p`
-font-size:24px;
+font-size:28px;
+margin:0 10px 25px 5px;
+font-weight:900;
 `
 
 const FlexContainer = styled.div`
@@ -153,25 +134,23 @@ display:flex;
 flex-wrap: wrap;
 
 align-content: space-between;
-margin-left:15px;
-gap:20px;
+margin-left:10px;
+gap:25px;
 `
 
-const CategoryTitleContainer = styled(FlexContainer)`
-justify-content:space-between;
 
-`
 
 const FilterBtn = styled.button`
-color:${props => props.isFiltered ? 'blue' : 'black'};
+border: ${props => props.isFiltered ? '3px solid #208AEC' : '0px solid #208AEC'};
+color: ${props => props.isFiltered ? 'white' : '#208AEC'};
 width:fit-content;
 padding:5px 10px;
 margin:-13px 10px 10px 10px;
-border-radius:5px;
-border:none;
-font-size:12px;
-font-weight:600;
-background-color:#F1F2F6;
+border-radius:10px;
+
+font-size:13px;
+font-weight:500;
+background-color:  ${props => props.isFiltered ? '#208AEC' : 'lightgrey'};
 display:flex;
 align-items:center;
 `

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import ChallengeContainer from './ChallengeContainer';
@@ -8,24 +8,39 @@ import { Link } from 'react-router-dom';
 
 
 export default function ContainerforOneCategory(props) {
-    const [challenges, setChallenges] = useState([])
 
+    
+  console.log("welcome to  One Category  container")
+    const [challenges, setChallenges] = useState([])
+    const cancelToken = useRef(null);
     const [isLoading, setIsLoading] = useState(true);
     console.log("this is props", props)
     const category = props.categoryName
 
     const fetchData = async () => {
+        console.log("inside one category fetch data")
+        
+
+        if (cancelToken.current) {
+            cancelToken.current.cancel();
+        }
+        cancelToken.current = axios.CancelToken.source();
         try {
-            const response = await axios.get(`/api/challenge?category=${category}`)
-            console.log("response in contaier for one category",response.data);
-            setChallenges(response.data)
+            const response = await axios.get(`/api/category/${category}`, {
+                cancelToken: cancelToken.current.token,
+            });
+            setChallenges(response.data);
+            console.log("in container for one category, response.data",response.data);
             setIsLoading(false);
         } catch (error) {
-
-            console.error("Error fetching challenge:", error);
-            setIsLoading(false);
+            if (axios.isCancel(error) || error) {
+                console.log('Data not found.');
+                console.error("Error fetching challenge:", error);
+                setIsLoading(false);
+            }
         }
     }
+
 
 
 //fetchData()
@@ -41,9 +56,9 @@ return (
         </div>
 
 
-        {challenges==null? (
+        {challenges == null ? (
             <p>Loading...</p>
-        ) :(
+        ) : (
             <ChallengeHorizontalScrollContainer>
                 {
                     challenges.map((item) => {
@@ -58,6 +73,8 @@ return (
 )
 
 }
+
+
 export const ChallengeHorizontalScrollContainer = styled.div`
 display: flex;
 overflow-x: scroll;
@@ -81,7 +98,6 @@ font-size:13px;
 background-color: transparent;
 border:none;
 font-weight:500;
-font-family: 'Quicksand', sans-serif;
 `
 const InfoText = styled.p`
 font-size:12px;

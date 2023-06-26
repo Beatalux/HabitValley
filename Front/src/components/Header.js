@@ -61,15 +61,15 @@ const LogoContainer = styled(StyledLink)`
 background-image:url(${logo});
 background-size:contain;
 background-repeat:no-repeat;
-width:30%;
-height:50px;
+width:40%;
+height:80px;
 border-radius: 20px;
 `
 
 const HeaderWrapper = styled.div`
 display:flex;
 align-items: center;
-padding:8px 1em;
+padding:8px 0;
 max-width: 600px;
 
 `
@@ -79,10 +79,11 @@ background:${props => props.blueBG ? 'transparent' : '#0466c8'};
 color:${props => props.blueBG ? 'black' : 'white'};
 border:1px solid #208AEC;
 
-font-size:0.8em;
+font-size:1em;
 border-radius:10px;
 padding:3px 10px;
-margin-left:10px;
+margin-left:5px;
+margin-right:5px;
 
 
 font-family: 'Quicksand', sans-serif;

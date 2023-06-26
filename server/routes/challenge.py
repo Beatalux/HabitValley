@@ -14,14 +14,14 @@ def get_challenge_with_params(id):
     return jsonify(result)
 
 
+
+
 @bp.route("",methods = ['GET'])
 def get_challenge():
-    args=request.args
-    print("in get chagllenge args:",args)
-    category=args.get("category")
+    print("in get challenge")
 
     try:
-        result=database.executeAll("SELECT * FROM challenges ch left join category ca on ch.category=ca.id where ca.name=%s",category)
+        result=database.executeAll("SELECT * FROM challenges")
         print("what;s the result",result)
         return jsonify(result)
     except Exception as e:

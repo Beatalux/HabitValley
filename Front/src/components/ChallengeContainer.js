@@ -38,7 +38,7 @@ export default function ChallengeContainer({ challenge, showStartDate = true }) 
                 </FlexContainer>
 
                 {showStartDate ?
-                    <FlexContainer style={{ marginTop: "-10px" }}>
+                    <FlexContainer style={{ marginTop: "-5px" }}>
                         <AccessAlarmIcon sx={{ fontSize: 15 }} />
                         <div style={{ width: "10px" }} />
 
@@ -76,12 +76,7 @@ font-weight:600;
 padding-left:3px;
 
 `
-const DescriptionTitleText = styled.p`
-font-size:24px;
-font-weight:600;
-margin:10px;
 
-`
 const ChallengeFeatureInfoBox = styled.div`
 width:fit-content;
 padding:5px 10px;
@@ -97,8 +92,11 @@ width:150px;
 height:107px;
 margin-bottom:-10px;
 
-`
+@media (min-width: 700px) {
+    width:160px;
+}
 
+`
 
 
 const FlexContainer = styled.div`
